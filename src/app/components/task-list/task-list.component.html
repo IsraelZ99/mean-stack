@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="form-inline">
+                <fieldset class="form-group col-sm-11"></fieldset>
+                <fieldset class="form-group col-sm-1">
+                    <a [routerLink]="['/tasks/new']" class="btn btn-primary">+</a>
+                </fieldset>
+            </form>
+            <br>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Tittle</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let task of tasks | async">
+                        <th scope="row">{{ task._id }}</th>
+                        <td>{{ task.tittle }}</td>
+                        <td>{{ task.date | date }}</td>
+                        <td>{{ task.status }}</td>
+                        <td> <a class="btn btn-info" [routerLink]="['/tasks', task._id, 'edit']">Edit</a> </td>
+                        <td> <a class="btn btn-danger" (click)="deleteTask(task._id)">-</a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

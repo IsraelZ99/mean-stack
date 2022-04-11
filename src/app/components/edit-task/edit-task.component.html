@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="col-sm-12">
+        <form (ngSubmit)="onSubmit()" class="form" #taskForm="ngForm">
+            <fieldset class="form-group">
+                <div class="col-sm-12">
+                    <label for="tittle" class="control-label">Tittle</label>
+                    <input type="text" name="tittle" id="tittle" class="form-control" required
+                        [(ngModel)]="task.tittle">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-3">
+                    <label for="date" class="control-label">Date</label>
+                    <input type="date" name="date" id="date" class="form-control" required
+                        [ngModel]="task.date | date: 'yyyy-MM-dd'" (ngModelChange)="task.date=$event">
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <div class="col-sm-3">
+                    <label for="status" class="control-label">Status</label>
+                    <select name="status" id="status" class="form-control" required [(ngModel)]="task.status">
+                        <option *ngFor="let status of taskStatusSelected" [value]="status.value">
+                            {{ status.value }}
+                        </option>
+                    </select>
+                </div>
+            </fieldset>
+            <br>
+            <fieldset class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" [disabled]="!taskForm.form.valid">Save</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

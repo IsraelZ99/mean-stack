@@ -20,6 +20,8 @@ app.get('/api', (req, res) => {
     res.send('The api works.');
 });
 
+require('./server/routes/task')(app);
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'dist/mean-stack/index.html'));
 });
